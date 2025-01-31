@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armani's portfolio</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            padding: 20px;
+        }S
+        #terminal {
+            width: 100%;
+            height: 90vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        #input-line {
+            display: flex;
+        }
+        #prompt {
+            color: lime;
+        }
+        #input {
+            background: none;
+            border: none;
+            color: green;
+            font-family: monospace;
+            outline: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal" style="white-space: pre-wrap;">
+        <h2 style="text-align: center;">♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪</h2>
+        <h3 style="text-align: center;">Portfolio di Armani</h3>
+        <h4 style="text-align: center;">Digita "help" per vedere i comandi disponibili.</h4> 
+        <h2 style="text-align: center;">__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</h2>
+    </div>
+    <div id="input-line">
+        <span id="prompt">$ </span>
+        <input type="text" id="input" autofocus>
+    </div>
+
+    <script>
+        const terminal = document.getElementById("terminal");
+        const input = document.getElementById("input");
+
+        const commands = {
+            help: "Comandi disponibili: \n <br> - about: informazioni su di me \n - projects: mostra i miei progetti \n - contact: come contattarmi\n - clear: per pulire lo schermo",
+            about: "Mi chiamo Armani Riti Islam, ho 23 anni e sono laureato in Informatica presso l'Università degli Studi di Milano. Sono appassionato di informatica, algoritmi e sistemi computazionali. Attualmente, sto proseguendo i miei studi magistrali e lavoro come tecnico informatico e docente presso un istituto scolastico. Inoltre, ho maturato anni di esperienza come rappresentante del Dipartimento di Informatica, contribuendo attivamente alla crescita e alla gestione delle attività accademiche e scientifiche.",
+            projects: "<h2><a href='https://gitlab.di.unimi.it/ritiarmani.islam/tirocinio-tesi-data-physicalization/-/tree/main?ref_type=heads' target='blank'>1. IoT data physicalization per la trasparenza: la via dello steampunk </a></h2> <p>La data physicalization mira a migliorare la comprensione dei dati attraverso oggetti fisici, sfruttando anche l’IoT per rendere le informazioni più accessibili e trasparenti. La tesi introduce questa disciplina, analizzandone storia, terminologie e benefici cognitivi, con un focus sui canali sensoriali. Lo steampunk viene esplorato come strumento divulgativo. Il progetto presentato è un mappamondo motorizzato controllato da Arduino UNO, che visualizza coordinate geografiche utilizzando dataset ottenuti via API e log. La ricerca si conclude con possibili sviluppi futuri del prototipo.</p> <br><h2>2. PNRR FUTURA - docente del futuro</h2><p>Attualmente ricopro il ruolo di docente nell’ambito del programma PNRR Futura - Docente del Futuro, contribuendo alla formazione delle nuove generazioni attraverso corsi di robotica rivolti a studenti e studentesse delle scuole medie. Il mio insegnamento si concentra sull’elettronica e la robotica educativa, con l'obiettivo di sviluppare il pensiero computazionale e le competenze STEM, preparando i giovani alle sfide tecnologiche del futuro.</p><br>3. <h2>Freelance -- Web developer</h2><p>Dal 2021 al 2023 ho avuto come mansione lo sviluppo di diversi portali web, che vanno da landing page a gestionali interni per aziende di piccole e media grandezze. Un esempio da riportare può essere <a href='https://ricaricaincasa.it'>Clicca qui</a></p>",
+            contact: "Email: codgioarm@gmail.com\n <br>GitHub: github.com/gioarmscodes",
+            clear: "clear"
+        };
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let cmd = input.value.trim();
+                input.value = "";
+                terminal.innerHTML += `<p>$ ${cmd}</p>`;
+                if (commands[cmd]) {
+                    if (cmd === "clear") {
+                        terminal.innerHTML = "";
+                    } else {
+                        terminal.innerHTML += `<p>${commands[cmd]}</p>`;
+                    }
+                } else {
+                    terminal.innerHTML += `<p>Comando non riconosciuto. Digita "help" per l'elenco dei comandi.</p>`;
+                }
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
